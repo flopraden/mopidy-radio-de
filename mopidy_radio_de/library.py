@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 import logging
-import urlparse
+import urllib.parse as urlparse
 from dateutil import parser
 
 from mopidy import backend

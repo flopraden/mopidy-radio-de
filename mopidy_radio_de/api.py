@@ -23,9 +23,10 @@ from __future__ import unicode_literals
 
 import logging
 import json
-from urllib import urlencode
-from urllib2 import urlopen, Request, HTTPError, URLError
-from urllib2 import ProxyHandler, build_opener, install_opener
+from urllib.parse import urlencode
+from urllib.request import urlopen, Request
+from urllib.error import HTTPError, URLError
+from urllib.request import ProxyHandler, build_opener, install_opener
 import random
 
 logger = logging.getLogger(__name__)
@@ -181,10 +182,10 @@ class RadioDeApi():
         req.add_header('User-Agent', self.user_agent)
         try:
             response = urlopen(req).read()
-        except HTTPError, error:
+        except HTTPError as error:
             logger.error('__urlopen HTTPError: %s', error)
             raise RadioDeApiError('HTTPError: %s' % error)
-        except URLError, error:
+        except URLError as error:
             logger.error('__urlopen URLError: %s', error)
             raise RadioDeApiError('URLError: %s' % error)
         return response
